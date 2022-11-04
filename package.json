@@ -1,0 +1,54 @@
+{
+  "name": "cypress-visual-regression-ressemble-js",
+  "version": "1.0.0",
+  "description": "Module for adding visual regression testing to Cypress using ressemble-js library",
+  "repository": "https://github.com/andremoniy/cypress-visual-regression-ressemble-js",
+  "author": "Andrey Lebedev <andremoniy@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "visual regression",
+    "image diff",
+    "cypress"
+  ],
+  "scripts": {
+    "test": "./node_modules/.bin/cypress run --env type=actual",
+    "base": "./node_modules/.bin/cypress run --env type=base",
+    "prepublish": "npm run jest && npm run lint && npm run prettier:check && npm run build",
+    "lint": "./node_modules/.bin/eslint src/**",
+    "prebuild": "./node_modules/.bin/rimraf dist",
+    "build": "./node_modules/.bin/babel src --out-dir dist --extensions \".js\" --copy-files",
+    "prepare": "npm run build",
+    "ci": "export SNAPSHOT_DIRECTORY=cypress/snapshots && npm run build && npm run base && npm test",
+    "prettier:check": "prettier --check --trailing-comma es5 --single-quote --arrow-parens always \"src/**/*.js\"",
+    "prettier:fix": "prettier --write --trailing-comma es5 --single-quote --arrow-parens always \"src/**/*.js\"",
+    "jest": "jest tests"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "jest": "^27.0.5",
+    "prettier": "2.3.1",
+    "rimraf": "^3.0.2"
+  },
+  "peerDependencies": {
+    "cypress": ">=5.6.0"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "ignore": [
+    "src",
+    "cypress",
+    "cypress.json"
+  ],
+  "dependencies": {
+    "canvas": "2.9.0",
+    "resemblejs": "^4.1.0",
+    "pngjs": "^6.0.0",
+    "sanitize-filename": "^1.6.3"
+  },
+  "types": "dist/command.d.ts"
+}
