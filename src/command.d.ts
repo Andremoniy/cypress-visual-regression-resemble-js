@@ -7,7 +7,7 @@ declare global {
     interface Chainable {
       compareSnapshot(name: string): void;
 
-      compareSnapshot(name: string, errorThreshold?: number): void;
+      compareSnapshot(name: string, errorThreshold?: number, scrollSelectorIntoView?: string): void;
 
       compareSnapshot(
         name: string,
