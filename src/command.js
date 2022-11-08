@@ -24,7 +24,8 @@ function compareSnapshotCommand(defaultScreenshotOptions) {
         screenshotOptions = Object.assign({}, defaultScreenshotOptions, params);
       }
 
-      if (scrollSelectorIntoView) cy.get(scrollSelectorIntoView).scrollIntoView();
+      if (scrollSelectorIntoView)
+        cy.get(scrollSelectorIntoView).scrollIntoView();
 
       let title = 'actual';
       if (Cypress.env('type') === 'base') {
