@@ -6,7 +6,7 @@ function compareSnapshotCommand(defaultScreenshotOptions) {
   Cypress.Commands.add(
     'compareSnapshot',
     { prevSubject: 'optional' },
-    (subject, name, params = {}) => {
+    (subject, name, params = {}, scrollSelectorIntoView) => {
       const SNAPSHOT_BASE_DIRECTORY = Cypress.env('SNAPSHOT_BASE_DIRECTORY');
       const SNAPSHOT_DIFF_DIRECTORY = Cypress.env('SNAPSHOT_DIFF_DIRECTORY');
       const ALWAYS_GENERATE_DIFF = Cypress.env('ALWAYS_GENERATE_DIFF');
@@ -23,6 +23,10 @@ function compareSnapshotCommand(defaultScreenshotOptions) {
           0.0;
         screenshotOptions = Object.assign({}, defaultScreenshotOptions, params);
       }
+
+      if (scrollSelectorIntoView)
+        cy.get(scrollSelectorIntoView).scrollIntoView();
+
       let title = 'actual';
       if (Cypress.env('type') === 'base') {
         title = 'base';
