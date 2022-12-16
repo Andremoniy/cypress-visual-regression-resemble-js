@@ -1,7 +1,5 @@
 #!/bin/sh
 npm i
-npm start&
-
 health_check() {
   echo "Waiting NPM server to start..."
   until $(curl --output /dev/null --silent --head --fail http://localhost:3000); do
@@ -11,9 +9,14 @@ health_check() {
   echo "Server started..."
 }
 
-health_check
-echo "Killing npm server..."
-pkill -f node
+for i in 1 2
+do
+  npm start&
+  health_check
+  echo "Killing npm server..."
+  pkill -f node
+done
+
 npm start&
 health_check
 cd sample_application_cypress
