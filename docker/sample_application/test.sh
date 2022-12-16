@@ -11,10 +11,10 @@ health_check() {
 
 npm start&
 health_check
-echo "Killing npm server..."
-pkill -f node
-npm start&
-health_check
+#echo "Killing npm server..."
+#pkill -f node
+#npm start&
+#health_check
 
 for i in 1 2 3 4 5
 do
