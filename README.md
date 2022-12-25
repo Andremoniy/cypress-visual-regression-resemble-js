@@ -8,4 +8,4 @@
 | Visual Regression Tracker | ? | ? | :x:  | :white_check_mark:| The client library is not working, requires Docker |
 | cypress-image-diff | 30.1% | :x: | :white_check_mark:  | :white_check_mark:| |
 | micoocypress | 8.8518% | :white_check_mark: | :x: | :x: | Requires Docker |
-| cypress-visual-regression-diff | ||||
+| cypress-visual-regression-diff | 14.7% |:white_check_mark: | ✅| ✅| |
