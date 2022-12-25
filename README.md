@@ -1,7 +1,7 @@
 # cypress-visual-regression-ressemble-js
 
 | Library  | % of difference | Mitigating anti-aliasing effect | Lightweight | In-test configuration | Remark |
-| ------------- | ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- |------------- |
 | cypress-visual-regression  | 29.63%  | :x: | :white_check_mark:  | :white_check_mark:| |
 | cypress-visual-regression-ressemble-js  | 6.2%  | :white_check_mark: | :white_check_mark:  | :white_check_mark:| |
 | cypress-blink-test  | ? | ? | :white_check_mark:  | :white_check_mark:| Not possible to install |
