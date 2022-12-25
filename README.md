@@ -2,7 +2,7 @@
 
 | Library  | Difference | Detect anti-aliasing effect | Lightweight | In-test configuration | Free | Remark |
 | ------------- | ------------- | ------------- | ------------- | ------------- |------------- |------------- |
-| happo  | ? | ? | :x: | ? |  :x:  | |
+| happo  | ? | ? | :x: |  :x: |  :x:  | |
 | cypress-plugin-snapshots  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of cypress) |
 | cypress-image-snapshot  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of cypress) |
 | cypress-visual-regression  | 29.63%  | :x: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
