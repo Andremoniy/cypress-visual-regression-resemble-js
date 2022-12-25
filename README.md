@@ -5,7 +5,7 @@
 | Argos  | ? | ? | :x: |  :white_check_mark: |  Free plan allows you :
  Up to 5,000 screenshots / month
  Unlimited users and repositories
- Unlimited screenshots for public repositories| Once installed on your github repo, it will will add a step to your build and detect changes every PR. Go to the Argos website to review the changes detected.|
+ Unlimited screenshots for public repositories| Argos GitHub app will allow Argos to read commits, mirror user accesses, and add pull-request statuses to notify about changes. It will be an extra step to your build and detect changes every PR. Once it detects a change, go to the Argos cli website to approve or reject the snapshot changes.|
 | happo  | ? | ? | :x: |  :x: |  :x:  | |
 | cypress-plugin-snapshots  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of cypress) |
 | cypress-image-snapshot  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of cypress) |
