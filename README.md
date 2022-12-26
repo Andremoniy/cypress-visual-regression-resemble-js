@@ -5,7 +5,15 @@
 [![github actions](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/workflows/Continuous%20Integration/badge.svg)](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/actions)
 
 
-Module for adding visual regression testing to [Cypress](https://www.cypress.io/),. based on [Cypress Visual Regression](https://github.com/cypress-visual-regression/cypress-visual-regression) plugin and [Ressemble.JS](https://github.com/rsmbl/Resemble.js) library.
+A module for adding visual regression testing to [Cypress](https://www.cypress.io/),. based on [Cypress Visual Regression](https://github.com/cypress-visual-regression/cypress-visual-regression) plugin and [Ressemble.JS](https://github.com/rsmbl/Resemble.js) library.
+
+## Mitigating the anti-aliasing effect
+
+Different [font rasterization](https://en.wikipedia.org/wiki/Font_rasterization) algorithms on Windows and Linux operating system lead to slight pixel differences in the same page rendering mainly due to anti-aliasing filter (known as "AA"). For a human eye these difference are not noticeable (see the pictures below, one taken on Windows on the left hand side and the one take on Linux on the right hand side):
+
+<img src="img/test-base.png" width=50% height=50%><img src="img/test-actual.png" width=50% height=50%>
+
+When performing the pixel-by-pixel comparison however the difference will be huge:
 
 ## Comparison with existing [Visual Testing plugins](https://docs.cypress.io/plugins/directory#Visual%20Testing)
 
