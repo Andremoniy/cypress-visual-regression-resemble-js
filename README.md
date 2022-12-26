@@ -17,6 +17,16 @@ When performing the pixel-by-pixel comparison however the difference will be hug
 
 <img src="img/test-diff-no-aa.png" width=50% height=50%>
 
+This particular diff was obtained via cypress-visual-regression library, that do not contain any built-in AA detection. The average difference for this image is around 29%. This is far above any meaningful threshold that one would be wanting to put in the visual regression test. What we want is to minimise this threshold and make it as little as possible. Also observe, that we are considering here a nearly worse-case scenario where the page consists from text elements only.
+
+We tested differet plugins (see the table below) to see, how they cope with the described problem. An important caveat here is that we do not want to use any paid subscription solution; we want to avoid sending any data to 3rd party servers; ideally we would like to have a "lightweight" solution that does not require any supplementaty docker container to be running. The best result out of this comparison was given by the **micoocypress** plugin: about 8.9% of difference. However, taking into account the preferences outlined above, can we do better?
+
+For our experiment we decided to wed together **cypress-visual-regression** plugin with **Ressembe.JS** library. The result is a lightweight plugin, e.g. one that does not require any interaction with additional servers, and we managed to squize 6.2% difference for the same sample page as we used for different tests:
+
+<img src="img/test-diff.png" width=50% height=50%>
+
+The result of this work is the present plugin called **cypress-visual-regression-ressemble-js**.
+
 ## Comparison with existing [Visual Testing plugins](https://docs.cypress.io/plugins/directory#Visual%20Testing)
 
 | Library  | Difference | Detect anti-aliasing effect | Lightweight | In-test configuration | Free | Remark |
