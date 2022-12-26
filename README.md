@@ -1,6 +1,6 @@
 # Cypress Visual Regression with Ressemble.JS
 
-[![npm](https://img.shields.io/npm/v/cypress-visual-regression)](https://www.npmjs.com/package/cypress-visual-regression-ressemble-js)
+[![npm](https://img.shields.io/npm/v/cypress-visual-regression-ressemble-js)](https://www.npmjs.com/package/cypress-visual-regression-ressemble-js)
 
 [![github actions](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/workflows/Continuous%20Integration/badge.svg)](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/actions)
 
