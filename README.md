@@ -3,7 +3,9 @@
 | Library  | Difference | Detect anti-aliasing effect | Lightweight | In-test configuration | Free | Remark |
 | ------------- | ------------- | ------------- | ------------- | ------------- |------------- |------------- |
 | Argos  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Argos's server |
-| happo  | ? | ? | :x: |  :x: |  :x:  | |
+| Applitools  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Applitools's server |
+| Percy  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Percy's server |
+| happo  | ? | ? | :x: |  :x: |  :x:  | Requires API access to the happo's server |
 | cypress-plugin-snapshots  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of cypress) |
 | cypress-image-snapshot  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of cypress) |
 | cypress-visual-regression  | 29.63%  | :x: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
