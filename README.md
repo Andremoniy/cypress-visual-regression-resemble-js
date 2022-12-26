@@ -15,6 +15,8 @@ Different [font rasterization](https://en.wikipedia.org/wiki/Font_rasterization)
 
 When performing the pixel-by-pixel comparison however the difference will be huge:
 
+<img src="img/test-diff-no-aa.png" width=50% height=50%>
+
 ## Comparison with existing [Visual Testing plugins](https://docs.cypress.io/plugins/directory#Visual%20Testing)
 
 | Library  | Difference | Detect anti-aliasing effect | Lightweight | In-test configuration | Free | Remark |
