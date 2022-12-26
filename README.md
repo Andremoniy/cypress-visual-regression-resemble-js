@@ -1,4 +1,13 @@
-# cypress-visual-regression-ressemble-js
+# Cypress Visual Regression with Ressemble.JS
+
+[![npm](https://img.shields.io/npm/v/cypress-visual-regression)](https://www.npmjs.com/package/cypress-visual-regression-ressemble-js)
+
+[![github actions](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/workflows/Continuous%20Integration/badge.svg)](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/actions)
+
+
+Module for adding visual regression testing to [Cypress](https://www.cypress.io/),. based on [Cypress Visual Regression](https://github.com/cypress-visual-regression/cypress-visual-regression) plugin and [Ressemble.JS](https://github.com/rsmbl/Resemble.js) library.
+
+## Comparison with existing [Visual Testing plugins](https://docs.cypress.io/plugins/directory#Visual%20Testing)
 
 | Library  | Difference | Detect anti-aliasing effect | Lightweight | In-test configuration | Free | Remark |
 | ------------- | ------------- | ------------- | ------------- | ------------- |------------- |------------- |
