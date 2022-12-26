@@ -106,7 +106,7 @@ compareSnapshotCommand();
   "compilerOptions": {
     "types": [
       "cypress",
-      "cypress-visual-regression"
+      "cypress-visual-regression-ressemble-js"
     ]
   }
 }
