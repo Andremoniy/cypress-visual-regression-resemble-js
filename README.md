@@ -9,17 +9,17 @@ A module for adding visual regression testing to [Cypress](https://www.cypress.i
 
 ## Mitigating the anti-aliasing effect
 
-Different [font rasterization](https://en.wikipedia.org/wiki/Font_rasterization) algorithms on Windows and Linux operating system lead to slight pixel differences in the same page rendering mainly due to anti-aliasing filter (known as "AA"). For a human eye these difference are not noticeable (see the pictures below, one taken on Windows on the left hand side and the one take on Linux on the right hand side):
+Different [font rasterization](https://en.wikipedia.org/wiki/Font_rasterization) algorithms on Windows and Linux operating systems lead to slight pixel differences in the same page rendering, mainly due to the anti-aliasing filter (known as "AA"). To a human eye these differences are not noticeable (see the pictures below, one taken on Windows on the left and the other on Linux):
 
 <img src="img/test-base.png" width=50% height=50%><img src="img/test-actual.png" width=50% height=50%>
 
-When performing the pixel-by-pixel comparison however the difference will be huge:
+However, when performing a pixel-by-pixel comparison the difference is clearly seen:
 
 <img src="img/test-diff-no-aa.png" width=50% height=50%>
 
-This particular diff was obtained via cypress-visual-regression library, that do not contain any built-in AA detection. The average difference for this image is around 29%. This is far above any meaningful threshold that one would be wanting to put in the visual regression test. What we want is to minimise this threshold and make it as little as possible. Also observe, that we are considering here a nearly worse-case scenario where the page consists from text elements only.
+This particular diff was obtained via **cypress-visual-regression** plugin, which does not contain any built-in anti-aliasing detection algorithm. The average difference in pixels for this image is approximately 29%. This is far above any meaningful threshold that one would want to put in a visual regression test. Our objective is to minimise this threshold and make it as little as possible. It is noteworthy that we are considering here a nearly worse-case scenario, where the page consists of text elements only.
 
-We tested differet plugins (see the table below) to see, how they cope with the described problem. An important caveat here is that we do not want to use any paid subscription solution; we want to avoid sending any data to 3rd party servers; ideally we would like to have a "lightweight" solution that does not require any supplementaty docker container to be running. The best result out of this comparison was given by the **micoocypress** plugin: about 8.9% of difference. However, taking into account the preferences outlined above, can we do better?
+We tested differet plugins (see the table below) to see how they coped with the described problem. An important caveat here is that we do not want to use any paid subscription solution; we want to avoid sending any data to 3rd party servers and ideally we would like to have a lightweight solution that does not require any supplementary docker container to be running. From this comparison the best result was seen with the **micoocypress** plugin: about 8.9% of detected difference between the example images. However, when taking into account the preferences outlined above, we must ask ourselves "can we do better?".
 
 For our experiment we decided to wed together **cypress-visual-regression** plugin with **Ressembe.JS** library. The result is a lightweight plugin, e.g. one that does not require any interaction with additional servers, and we managed to squize 6.2% difference for the same sample page as we used for different tests:
 
