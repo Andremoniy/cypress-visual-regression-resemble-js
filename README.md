@@ -179,19 +179,15 @@ typically set by using the field `env` in configuration in `cypress.config.json`
 | Variable                        | Description                |
 |---------------------------------|----------------------------|
 | ALWAYS_GENERATE_DIFF            | Boolean, defaults to true  |
-| ALLOW_VISUAL_REGRESSION_TO_FAIL | Boolean, defaults to false |
 
 
 `ALWAYS_GENERATE_DIFF` specifies if diff images are generated for successful tests.  
-If you only want the tests to create diff images based on your threshold without the tests to fail, you can set `ALLOW_VISUAL_REGRESSION_TO_FAIL`.
-If this variable is set, diffs will be computed using your thresholds but tests will not fail if a diff is found.
 
 If you want to see all diff images which are different (based on your thresholds), use the following in your `cypress.config.json`:
 ```json
 {
   "env": {
-    "ALWAYS_GENERATE_DIFF": false,
-    "ALLOW_VISUAL_REGRESSION_TO_FAIL": true
+    "ALWAYS_GENERATE_DIFF": false
   }
 }
 ```
@@ -237,7 +233,7 @@ it('should display the login page correctly', () => {
   });
 });
 ```
-> Looking for more examples? Review [docker/cypress/integration/main.spec.js](https://github.com/mjhea0/cypress-visual-regression/blob/master/docker/cypress/integration/main.spec.js).
+> Looking for more examples? Review [docker/sample_application]([https://github.com/mjhea0/cypress-visual-regression/blob/master/docker/cypress/integration/main.spec.js](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/tree/main/docker/sample_application)).
 
 
 Take the base images:
