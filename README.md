@@ -21,7 +21,7 @@ This particular diff was obtained via **cypress-visual-regression** plugin, whic
 
 We tested differet plugins (see the table below) to see how they coped with the described problem. An important caveat here is that we do not want to use any paid subscription solution; we want to avoid sending any data to 3rd party servers and ideally we would like to have a lightweight solution that does not require any supplementary docker container to be running. From this comparison the best result was seen with the **micoocypress** plugin: about 8.9% of detected difference between the example images. However, when taking into account the preferences outlined above, we must ask ourselves "can we do better?".
 
-For our experiment we decided to wed together **cypress-visual-regression** plugin with **Ressembe.JS** library. The result is a lightweight plugin, e.g. one that does not require any interaction with additional servers, and we managed to squize 6.2% difference for the same sample page as we used for different tests:
+For our experiment we decided to marry together **cypress-visual-regression** plugin with **Ressembe.JS** library. The result is a lightweight plugin, one that does not require any interaction with additional servers, and we managed to squeeze a 6.2% difference for the same sample page that we used for different tests:
 
 <img src="img/test-diff.png" width=50% height=50%>
 
@@ -31,19 +31,19 @@ The result of this work is the present plugin called **cypress-visual-regression
 
 | Library  | Difference | Detect anti-aliasing effect | Lightweight | In-test configuration | Free | Remark |
 | ------------- | ------------- | ------------- | ------------- | ------------- |------------- |------------- |
-| Argos  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Argos's server |
-| Applitools  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Applitools's server |
-| Percy  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Percy's server |
-| happo  | ? | ? | :x: |  :x: |  :x:  | Requires API access to the happo's server |
-| cypress-plugin-snapshots  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of cypress) |
-| cypress-image-snapshot  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of cypress) |
+| Argos  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Argos server |
+| Applitools  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Applitools server |
+| Percy  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Percy server |
+| happo  | ? | ? | :x: |  :x: |  :x:  | Requires API access to the happo server |
+| cypress-plugin-snapshots  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:| Not possible to install (bound to an outdated version of Cypress) |
+| cypress-image-snapshot  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:| Not possible to install (bound to an outdated version of Cypress) |
 | cypress-visual-regression  | 29.63%  | :x: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
 | **cypress-visual-regression-resemble-js**  | **6.2%**  | :white_check_mark: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
-| cypress-blink-test  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of cypress) |
+| cypress-blink-test  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of Cypress) |
 | Visual Regression Tracker | ? | ? | :x:  | :white_check_mark:|  :white_check_mark:|The client library is not working, requires Docker |
 | cypress-image-diff | 30.1% | :x: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
 | micoocypress | 8.8518% | :white_check_mark: | :x: | :x: | :white_check_mark:| Requires Docker |
-| cypress-visual-regression-diff | 14.7% |:white_check_mark: | ✅| ✅| :white_check_mark:| Requires manual installation of the sharp library on linux |
+| cypress-visual-regression-diff | 14.7% |:white_check_mark: | ✅| ✅| :white_check_mark:| Requires a manual installation of "sharp" library on Linux |
 
 ## Getting Started
 
