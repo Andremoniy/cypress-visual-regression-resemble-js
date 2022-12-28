@@ -5,7 +5,7 @@
 [![github actions](https://github.com/Andremoniy/cypress-visual-regression-resemble-js/workflows/Continuous%20Integration/badge.svg)](https://github.com/Andremoniy/cypress-visual-regression-resemble-js/actions)
 
 
-A module for adding visual regression testing to [Cypress](https://www.cypress.io/),. based on [Cypress Visual Regression](https://github.com/cypress-visual-regression/cypress-visual-regression) plugin and [Resemble.JS](https://github.com/rsmbl/Resemble.js) library.
+A module for adding visual regression testing to [Cypress](https://www.cypress.io/), based on [Cypress Visual Regression](https://github.com/cypress-visual-regression/cypress-visual-regression) plugin and [Resemble.JS](https://github.com/rsmbl/Resemble.js) library.
 
 ## Mitigating the anti-aliasing effect
 
