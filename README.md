@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/cypress-visual-regression-resemble-js)](https://www.npmjs.com/package/cypress-visual-regression-resemble-js)
 
-[![github actions](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/workflows/Continuous%20Integration/badge.svg)](https://github.com/Andremoniy/cypress-visual-regression-resemble-js/actions)
+[![github actions](https://github.com/Andremoniy/cypress-visual-regression-resemble-js/workflows/Continuous%20Integration/badge.svg)](https://github.com/Andremoniy/cypress-visual-regression-resemble-js/actions)
 
 
 A module for adding visual regression testing to [Cypress](https://www.cypress.io/),. based on [Cypress Visual Regression](https://github.com/cypress-visual-regression/cypress-visual-regression) plugin and [Resemble.JS](https://github.com/rsmbl/Resemble.js) library.
@@ -25,7 +25,7 @@ For our experiment we decided to wed together **cypress-visual-regression** plug
 
 <img src="img/test-diff.png" width=50% height=50%>
 
-The result of this work is the present plugin called **cypress-visual-regression-ressemble-js**.
+The result of this work is the present plugin called **cypress-visual-regression-resemble-js**.
 
 ## Comparison with existing [Visual Testing plugins](https://docs.cypress.io/plugins/directory#Visual%20Testing)
 
@@ -38,7 +38,7 @@ The result of this work is the present plugin called **cypress-visual-regression
 | cypress-plugin-snapshots  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of cypress) |
 | cypress-image-snapshot  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of cypress) |
 | cypress-visual-regression  | 29.63%  | :x: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
-| **cypress-visual-regression-ressemble-js**  | **6.2%**  | :white_check_mark: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
+| **cypress-visual-regression-resemble-js**  | **6.2%**  | :white_check_mark: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
 | cypress-blink-test  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of cypress) |
 | Visual Regression Tracker | ? | ? | :x:  | :white_check_mark:|  :white_check_mark:|The client library is not working, requires Docker |
 | cypress-image-diff | 30.1% | :x: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
@@ -50,14 +50,14 @@ The result of this work is the present plugin called **cypress-visual-regression
 Install:
 
 ```sh
-$ npm install cypress-visual-regression-ressemble-js
+$ npm install cypress-visual-regression-resemble-js
 ```
 
 Add the following config to your *cypress.config.js* file:
 
 ```javascript
 const { defineConfig } = require("cypress");
-const getCompareSnapshotsPlugin = require('cypress-visual-regression-ressemble-js/dist/plugin');
+const getCompareSnapshotsPlugin = require('cypress-visual-regression-resemble-js/dist/plugin');
 
 module.exports = defineConfig({
   env: {
@@ -76,7 +76,7 @@ module.exports = defineConfig({
 Add the command to *cypress/support/commands.js*:
 
 ```javascript
-const compareSnapshotCommand = require('cypress-visual-regression-ressemble-js/dist/command');
+const compareSnapshotCommand = require('cypress-visual-regression-resemble-js/dist/command');
 
 compareSnapshotCommand();
 ```
@@ -95,7 +95,7 @@ If you're using TypeScript, use files with a `.ts` extension, as follows:
 
 ```ts
 import { defineConfig } from 'cypress';
-import getCompareSnapshotsPlugin from 'cypress-visual-regression-ressemble-js/dist/plugin';
+import getCompareSnapshotsPlugin from 'cypress-visual-regression-resemble-js/dist/plugin';
 
 export default defineConfig({
   env: {
@@ -114,7 +114,7 @@ export default defineConfig({
 *cypress/support/commands.ts*
 
 ```ts
-import compareSnapshotCommand from 'cypress-visual-regression-ressemble-js/dist/command';
+import compareSnapshotCommand from 'cypress-visual-regression-resemble-js/dist/command';
 
 compareSnapshotCommand();
 ```
@@ -233,7 +233,7 @@ it('should display the login page correctly', () => {
   });
 });
 ```
-> Looking for more examples? Review [docker/sample_application](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/tree/main/docker/sample_application).
+> Looking for more examples? Review [docker/sample_application](https://github.com/Andremoniy/cypress-visual-regression-resemble-js/tree/main/docker/sample_application).
 
 
 Take the base images:
