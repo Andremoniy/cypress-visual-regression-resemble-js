@@ -233,7 +233,7 @@ it('should display the login page correctly', () => {
   });
 });
 ```
-> Looking for more examples? Review [docker/sample_application]([https://github.com/mjhea0/cypress-visual-regression/blob/master/docker/cypress/integration/main.spec.js](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/tree/main/docker/sample_application)).
+> Looking for more examples? Review [docker/sample_application](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/tree/main/docker/sample_application).
 
 
 Take the base images:
