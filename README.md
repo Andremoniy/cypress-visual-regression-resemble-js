@@ -1,11 +1,11 @@
-# Cypress Visual Regression with Ressemble.JS
+# Cypress Visual Regression with Resemble.JS
 
-[![npm](https://img.shields.io/npm/v/cypress-visual-regression-ressemble-js)](https://www.npmjs.com/package/cypress-visual-regression-ressemble-js)
+[![npm](https://img.shields.io/npm/v/cypress-visual-regression-resemble-js)](https://www.npmjs.com/package/cypress-visual-regression-resemble-js)
 
-[![github actions](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/workflows/Continuous%20Integration/badge.svg)](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/actions)
+[![github actions](https://github.com/Andremoniy/cypress-visual-regression-ressemble-js/workflows/Continuous%20Integration/badge.svg)](https://github.com/Andremoniy/cypress-visual-regression-resemble-js/actions)
 
 
-A module for adding visual regression testing to [Cypress](https://www.cypress.io/),. based on [Cypress Visual Regression](https://github.com/cypress-visual-regression/cypress-visual-regression) plugin and [Ressemble.JS](https://github.com/rsmbl/Resemble.js) library.
+A module for adding visual regression testing to [Cypress](https://www.cypress.io/),. based on [Cypress Visual Regression](https://github.com/cypress-visual-regression/cypress-visual-regression) plugin and [Resemble.JS](https://github.com/rsmbl/Resemble.js) library.
 
 ## Mitigating the anti-aliasing effect
 
