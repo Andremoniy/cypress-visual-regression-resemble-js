@@ -9,7 +9,7 @@ A module for adding visual regression testing to [Cypress](https://www.cypress.i
 
 ## Mitigating the anti-aliasing effect
 
-Different [font rasterization](https://en.wikipedia.org/wiki/Font_rasterization) algorithms on Windows and Linux operating systems lead to slight pixel differences in the same page rendering, mainly due to the anti-aliasing filter (known as "AA"). To a human eye these differences are not noticeable (see the pictures below, one taken on Windows on the left and the other on Linux):
+Different [font rasterization](https://en.wikipedia.org/wiki/Font_rasterization) algorithms on Windows and Linux operating systems lead to slight pixel differences in the same page rendering, mainly due to the anti-aliasing filter (known as "AA"). To the human eye these differences are not noticeable (see the pictures below, one taken on Windows on the left and the other on Linux):
 
 <img src="img/test-base.png" width=50% height=50%><img src="img/test-actual.png" width=50% height=50%>
 
