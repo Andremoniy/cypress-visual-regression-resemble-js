@@ -2,48 +2,9 @@
 
 [![npm](https://img.shields.io/npm/v/cypress-visual-regression-resemble-js)](https://www.npmjs.com/package/cypress-visual-regression-resemble-js)
 
-[![github actions](https://github.com/Andremoniy/cypress-visual-regression-resemble-js/workflows/Continuous%20Integration/badge.svg)](https://github.com/Andremoniy/cypress-visual-regression-resemble-js/actions)
-
-
 A module for adding visual regression testing to [Cypress](https://www.cypress.io/), based on [Cypress Visual Regression](https://github.com/cypress-visual-regression/cypress-visual-regression) plugin and [Resemble.JS](https://github.com/rsmbl/Resemble.js) library.
 
-## Mitigating the anti-aliasing effect
-
-Different [font rasterization](https://en.wikipedia.org/wiki/Font_rasterization) algorithms on Windows and Linux operating systems lead to slight pixel differences in the same page rendering, mainly due to the anti-aliasing filter (known as "AA"). To the human eye these differences are not noticeable (see the pictures below, one taken on Windows on the left and the other on Linux):
-
-<img src="img/test-base.png" width=50% height=50%><img src="img/test-actual.png" width=50% height=50%>
-
-However, when performing a pixel-by-pixel comparison the difference is clearly seen:
-
-<img src="img/test-diff-no-aa.png" width=50% height=50%>
-
-This particular diff was obtained via **cypress-visual-regression** plugin, which does not contain any built-in anti-aliasing detection algorithm. The average difference in pixels for this image is approximately 29%. This is far above any meaningful threshold that one would want to put in a visual regression test. Our objective is to minimise this threshold and make it as little as possible. It is noteworthy that we are considering here a nearly worse-case scenario, where the page consists of text elements only.
-
-We tested differet plugins (see the table below) to see how they coped with the described problem. An important caveat here is that we do not want to use any paid subscription solution; we want to avoid sending any data to 3rd party servers and ideally we would like to have a lightweight solution that does not require any supplementary docker container to be running. From this comparison the best result was seen with the **micoocypress** plugin: about 8.9% of detected difference between the example images. However, when taking into account the preferences outlined above, we must ask ourselves "can we do better?".
-
-For our experiment we decided to marry together **cypress-visual-regression** plugin with **Ressembe.JS** library. The result is a lightweight plugin, one that does not require any interaction with additional servers, and we managed to squeeze a 6.2% difference for the same sample page that we used for different tests:
-
-<img src="img/test-diff.png" width=50% height=50%>
-
-The result of this work is the present plugin called **cypress-visual-regression-resemble-js**.
-
-## Comparison with existing [Visual Testing plugins](https://docs.cypress.io/plugins/directory#Visual%20Testing)
-
-| Library  | Difference | Detect anti-aliasing effect | Lightweight | In-test configuration | Free | Remark |
-| ------------- | ------------- | ------------- | ------------- | ------------- |------------- |------------- |
-| Argos  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Argos server |
-| Applitools  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Applitools server |
-| Percy  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Percy server |
-| happo  | ? | ? | :x: |  :x: |  :x:  | Requires API access to the happo server |
-| cypress-plugin-snapshots  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:| Not possible to install (bound to an outdated version of Cypress) |
-| cypress-image-snapshot  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:| Not possible to install (bound to an outdated version of Cypress) |
-| cypress-visual-regression  | 29.63%  | :x: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
-| **cypress-visual-regression-resemble-js**  | **6.2%**  | :white_check_mark: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
-| cypress-blink-test  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of Cypress) |
-| Visual Regression Tracker | ? | ? | :x:  | :white_check_mark:|  :white_check_mark:|The client library is not working, requires Docker |
-| cypress-image-diff | 30.1% | :x: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
-| micoocypress | 8.8518% | :white_check_mark: | :x: | :x: | :white_check_mark:| Requires Docker |
-| cypress-visual-regression-diff | 14.7% |:white_check_mark: | ✅| ✅| :white_check_mark:| Requires a manual installation of "sharp" library on Linux |
+The main difference between "Cypress Visual Regression" plugin and this one is that the present plugin [mitigates the anti-aliasing problem](#mitigating-the-anti-aliasing-effect). The problem appears when comparing the base and actual screenshots generated on different environments (e.g. Windows vs Linux).
 
 ## Getting Started
 
@@ -252,3 +213,41 @@ Find regressions:
 ```sh
 $ ./node_modules/.bin/cypress run --env type=actual
 ```
+
+## Mitigating the anti-aliasing effect
+
+Different [font rasterization](https://en.wikipedia.org/wiki/Font_rasterization) algorithms on Windows and Linux operating systems lead to slight pixel differences in the same page rendering, mainly due to the anti-aliasing filter (known as "AA"). To the human eye these differences are not noticeable (see the pictures below, one taken on Windows on the left and the other on Linux):
+
+<img src="img/test-base.png" width=50% height=50%><img src="img/test-actual.png" width=50% height=50%>
+
+However, when performing a pixel-by-pixel comparison the difference is clearly seen:
+
+<img src="img/test-diff-no-aa.png" width=50% height=50%>
+
+This particular diff was obtained via **cypress-visual-regression** plugin, which does not contain any built-in anti-aliasing detection algorithm. The average difference in pixels for this image is approximately 29%. This is far above any meaningful threshold that one would want to put in a visual regression test. Our objective is to minimise this threshold and make it as little as possible. It is noteworthy that we are considering here a nearly worse-case scenario, where the page consists of text elements only.
+
+We tested differet plugins (see the table below) to see how they coped with the described problem. An important caveat here is that we do not want to use any paid subscription solution; we want to avoid sending any data to 3rd party servers and ideally we would like to have a lightweight solution that does not require any supplementary docker container to be running. From this comparison the best result was seen with the **micoocypress** plugin: about 8.9% of detected difference between the example images. However, when taking into account the preferences outlined above, we must ask ourselves "can we do better?".
+
+For our experiment we decided to marry together **cypress-visual-regression** plugin with **Ressembe.JS** library. The result is a lightweight plugin, one that does not require any interaction with additional servers, and we managed to squeeze a 6.2% difference for the same sample page that we used for different tests:
+
+<img src="img/test-diff.png" width=50% height=50%>
+
+The result of this work is the present plugin called **cypress-visual-regression-resemble-js**.
+
+## Comparison with existing [Visual Testing plugins](https://docs.cypress.io/plugins/directory#Visual%20Testing)
+
+| Library  | Difference | Detect anti-aliasing effect | Lightweight | In-test configuration | Free | Remark |
+| ------------- | ------------- | ------------- | ------------- | ------------- |------------- |------------- |
+| Argos  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Argos server |
+| Applitools  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Applitools server |
+| Percy  | ? | ? | :x: | :x: |  :white_check_mark: (limited) | Requires API access to the Percy server |
+| happo  | ? | ? | :x: |  :x: |  :x:  | Requires API access to the happo server |
+| cypress-plugin-snapshots  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:| Not possible to install (bound to an outdated version of Cypress) |
+| cypress-image-snapshot  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:| Not possible to install (bound to an outdated version of Cypress) |
+| cypress-visual-regression  | 29.63%  | :x: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
+| **cypress-visual-regression-resemble-js**  | **6.2%**  | :white_check_mark: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
+| cypress-blink-test  | ? | ? | :white_check_mark:  | :white_check_mark:|  :white_check_mark:|Not possible to install (bound to an outdated version of Cypress) |
+| Visual Regression Tracker | ? | ? | :x:  | :white_check_mark:|  :white_check_mark:|The client library is not working, requires Docker |
+| cypress-image-diff | 30.1% | :x: | :white_check_mark:  | :white_check_mark:| :white_check_mark:| |
+| micoocypress | 8.8518% | :white_check_mark: | :x: | :x: | :white_check_mark:| Requires Docker |
+| cypress-visual-regression-diff | 14.7% |:white_check_mark: | ✅| ✅| :white_check_mark:| Requires a manual installation of "sharp" library on Linux |
