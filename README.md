@@ -126,7 +126,7 @@ compareSnapshotCommand();
   "compilerOptions": {
     "types": [
       "cypress",
-      "cypress-visual-regression-ressemble-js"
+      "cypress-visual-regression-resemble-js"
     ]
   }
 }
@@ -150,7 +150,7 @@ For more info on how to use TypeScript with Cypress, please refer to [this docum
 You can also pass default [arguments](https://docs.cypress.io/api/cypress-api/screenshot-api.html#Arguments) to `compareSnapshotCommand()`:
 
 ```javascript
-const compareSnapshotCommand = require('cypress-visual-regression-ressemble-js/dist/command');
+const compareSnapshotCommand = require('cypress-visual-regression-resemble-js/dist/command');
 
 compareSnapshotCommand({
   capture: 'fullPage'
