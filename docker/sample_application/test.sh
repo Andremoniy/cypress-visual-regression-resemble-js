@@ -17,5 +17,6 @@ echo "Running cypress installation and test"
 cd sample_application_cypress
 npm i
 npm run cypress:run || true
+npm run cypress:run || true
 npm run cypress:run
 
