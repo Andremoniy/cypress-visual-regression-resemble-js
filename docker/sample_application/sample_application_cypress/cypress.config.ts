@@ -1,5 +1,5 @@
 import { defineConfig } from "cypress";
-import * as getCompareSnapshotsPlugin from "cypress-visual-regression-ressemble-js/dist/plugin";
+import * as getCompareSnapshotsPlugin from "cypress-visual-regression-resemble-js/dist/plugin";
 
 export default defineConfig({
   e2e: {
