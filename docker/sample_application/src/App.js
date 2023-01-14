@@ -17,7 +17,8 @@ function App() {
     useEffect(() => {
         // document.fonts.load("400px 'Roboto'").then(() => setIsReady(true));
         document.fonts.ready.then(() => {
-            document.fonts.load("400px 'Roboto'").then(() => setIsReady(true));
+            setIsReady(true);
+            // document.fonts.load("400px 'Roboto'").then(() => setIsReady(true));
         });
     }, [])
 
