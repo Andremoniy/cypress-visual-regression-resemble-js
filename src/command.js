@@ -13,7 +13,10 @@ function compareSnapshot(defaultScreenshotOptions) {
     if (typeof params === 'number') {
       errorThreshold = params;
     } else if (typeof params === 'object') {
-      errorThreshold = params.errorThreshold || defaultScreenshotOptions && defaultScreenshotOptions.errorThreshold || 0.0;
+      errorThreshold =
+        params.errorThreshold ||
+        (defaultScreenshotOptions && defaultScreenshotOptions.errorThreshold) ||
+        0.0;
       screenshotOptions = Object.assign({}, defaultScreenshotOptions, params);
     }
 
@@ -29,12 +32,14 @@ function compareSnapshot(defaultScreenshotOptions) {
     const fileName = `${name}-${title}`;
     if (Cypress.env('type') === 'base') {
       const identifier = `${fileName}-${new Date().getTime()}`;
-      objToOperateOn.screenshot(`${identifier}`, screenshotOptions).task('visualRegressionCopy', {
-        specName: Cypress.spec.name,
-        from: `${identifier}`,
-        to: `${fileName}`,
-        baseDir: SNAPSHOT_BASE_DIRECTORY
-      });
+      objToOperateOn
+        .screenshot(`${identifier}`, screenshotOptions)
+        .task('visualRegressionCopy', {
+          specName: Cypress.spec.name,
+          from: `${identifier}`,
+          to: `${fileName}`,
+          baseDir: SNAPSHOT_BASE_DIRECTORY,
+        });
     } else {
       objToOperateOn.screenshot(`${fileName}`, screenshotOptions);
     }
@@ -47,19 +52,23 @@ function compareSnapshot(defaultScreenshotOptions) {
         baseDir: SNAPSHOT_BASE_DIRECTORY,
         diffDir: SNAPSHOT_DIFF_DIRECTORY,
         keepDiff: ALWAYS_GENERATE_DIFF,
-        errorThreshold
+        errorThreshold,
       };
-      cy.task('compareSnapshotsPlugin', options).then(results => {
+      cy.task('compareSnapshotsPlugin', options).then((results) => {
         if (results.error) {
           throw deserializeError(results.error);
         }
       });
     }
-  }
-} 
+  };
+}
 
 function compareSnapshotCommand(defaultScreenshotOptions) {
-  Cypress.Commands.add('compareSnapshot', { prevSubject: 'optional' }, compareSnapshot(defaultScreenshotOptions));
+  Cypress.Commands.add(
+    'compareSnapshot',
+    { prevSubject: 'optional' },
+    compareSnapshot(defaultScreenshotOptions)
+  );
 }
 
 /* eslint-enable no-undef */
