@@ -15,7 +15,7 @@ const Item = styled(Paper)(({theme}) => ({
 function App() {
     const [isReady, setIsReady] = useState(false);
     useEffect(() => {
-        document.fonts.load("12px 'Roboto'").then(() => setIsReady(true));
+        document.fonts.ready.then(() => setIsReady(true));
     }, [])
 
     return (isReady &&
