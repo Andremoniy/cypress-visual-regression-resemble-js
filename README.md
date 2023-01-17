@@ -1,3 +1,5 @@
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
+
 # Cypress Visual Regression with Resemble.JS
 
 [![npm](https://img.shields.io/npm/v/cypress-visual-regression-resemble-js)](https://www.npmjs.com/package/cypress-visual-regression-resemble-js)
