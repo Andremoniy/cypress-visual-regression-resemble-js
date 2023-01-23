@@ -22,10 +22,11 @@ jobs:
       - name: Cypress.io
         uses: cypress-io/github-action@v5.0.5
         id: cypress
+        continue-on-error: true
         with:
-          continue-on-error: true
           working-directory: sample-app
           start: npm start
-          command: npm run cypress:snapshots
-      - name: Print Cypress result
-        run: echo ! ${{ steps.cypress.outcome }}
+          command: npm test
+      - name: Pass or fail
+        run: |
+          if [[ ${{ steps.cypress.outcome }} == 0 ]]; then exit 1; else exit 0; fi
