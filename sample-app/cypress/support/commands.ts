@@ -1,4 +1,4 @@
-import * as compareSnapshotCommand from "../../../dist/command";
+import compareSnapshotCommand from "../../../dist/command";
 
 // @ts-ignore
 compareSnapshotCommand();

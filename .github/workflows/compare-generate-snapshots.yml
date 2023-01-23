@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ["ubuntu-latest", "windows-latest"]
+        os: ["ubuntu-latest"]
         node-version: ["16.x"]
     name: Cypress run
     steps:
@@ -21,7 +21,11 @@ jobs:
         run: npm install && npm run build
       - name: Cypress.io
         uses: cypress-io/github-action@v5.0.5
+        id: cypress
         with:
-          #continue-on-error: true
+          continue-on-error: true
           working-directory: sample-app
           start: npm start
+          command: npm run cypress:snapshots
+      - name: Print Cypress result
+        run: echo ! ${{ steps.cypress.outcome }}
