@@ -24,4 +24,4 @@ jobs:
         with:
           #continue-on-error: true
           working-directory: sample-app
-          #build: npx cypress info
+          start: npm start
