@@ -1,5 +1,7 @@
 name: Compare and generate snapshots in Cypress tests
-on: [push, pull_request]
+on:
+  pull_request:
+    branches: ["main"]
 jobs:
   cypress-run:
     runs-on: ${{ matrix.os }}
@@ -16,7 +18,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: "Install and build lib"
-        run: npm install && npm build
+        run: npm install && npm run build
       - name: Cypress.io
         uses: cypress-io/github-action@v5.0.5
         with:
