@@ -1,0 +1,16 @@
+name: Compare and generate snapshots in Cypress tests
+on: [push, pull_request]
+jobs:
+  cypress-run:
+    runs-on: windows-latest
+    name: Cypress run
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cypress.io
+        uses: cypress-io/github-action@v5.0.5
+        with:
+          #continue-on-error: true
+          working-directory: sample-app
+          #build: npx cypress info
