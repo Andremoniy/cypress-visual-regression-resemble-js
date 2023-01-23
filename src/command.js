@@ -1,18 +1,18 @@
-const { deserializeError } = require("./utils-browser");
+const { deserializeError } = require('./utils-browser');
 
 /* eslint-disable no-undef */
 
 function compareSnapshot(defaultScreenshotOptions) {
   return (subject, name, params = {}, scrollSelectorIntoView) => {
-    const SNAPSHOT_BASE_DIRECTORY = Cypress.env("SNAPSHOT_BASE_DIRECTORY");
-    const SNAPSHOT_DIFF_DIRECTORY = Cypress.env("SNAPSHOT_DIFF_DIRECTORY");
-    const ALWAYS_GENERATE_DIFF = Cypress.env("ALWAYS_GENERATE_DIFF");
+    const SNAPSHOT_BASE_DIRECTORY = Cypress.env('SNAPSHOT_BASE_DIRECTORY');
+    const SNAPSHOT_DIFF_DIRECTORY = Cypress.env('SNAPSHOT_DIFF_DIRECTORY');
+    const ALWAYS_GENERATE_DIFF = Cypress.env('ALWAYS_GENERATE_DIFF');
 
     let screenshotOptions = defaultScreenshotOptions;
     let errorThreshold = 0.0;
-    if (typeof params === "number") {
+    if (typeof params === 'number') {
       errorThreshold = params;
-    } else if (typeof params === "object") {
+    } else if (typeof params === 'object') {
       errorThreshold =
         params.errorThreshold ||
         (defaultScreenshotOptions && defaultScreenshotOptions.errorThreshold) ||
@@ -22,15 +22,15 @@ function compareSnapshot(defaultScreenshotOptions) {
 
     if (scrollSelectorIntoView) cy.get(scrollSelectorIntoView).scrollIntoView();
 
-    let title = "actual";
-    if (Cypress.env("type") === "base") {
-      title = "base";
+    let title = 'actual';
+    if (Cypress.env('type') === 'base') {
+      title = 'base';
     }
 
     // take snapshot only if visual test is failing
     const objToOperateOn = subject ? cy.get(subject) : cy;
     const fileName = `${name}-${title}`;
-    if (Cypress.env("type") === "base") {
+    if (Cypress.env('type') === 'base') {
       const identifier = `${name}-actual`;
       const options = {
         fileName: name,
@@ -42,10 +42,10 @@ function compareSnapshot(defaultScreenshotOptions) {
       };
       objToOperateOn
         .screenshot(`${identifier}`, screenshotOptions)
-        .task("compareSnapshotsPlugin", options)
+        .task('compareSnapshotsPlugin', options)
         .then((results) => {
           if (results.error) {
-            cy.task("visualRegressionCopy", {
+            cy.task('visualRegressionCopy', {
               specName: Cypress.spec.name,
               from: `${identifier}`,
               to: `${fileName}`,
@@ -59,7 +59,7 @@ function compareSnapshot(defaultScreenshotOptions) {
     }
 
     // run visual tests
-    if (Cypress.env("type") === "actual") {
+    if (Cypress.env('type') === 'actual') {
       const options = {
         fileName: name,
         specDirectory: Cypress.spec.name,
@@ -68,7 +68,7 @@ function compareSnapshot(defaultScreenshotOptions) {
         keepDiff: ALWAYS_GENERATE_DIFF,
         errorThreshold,
       };
-      cy.task("compareSnapshotsPlugin", options).then((results) => {
+      cy.task('compareSnapshotsPlugin', options).then((results) => {
         if (results.error) {
           throw deserializeError(results.error);
         }
@@ -79,8 +79,8 @@ function compareSnapshot(defaultScreenshotOptions) {
 
 function compareSnapshotCommand(defaultScreenshotOptions) {
   Cypress.Commands.add(
-    "compareSnapshot",
-    { prevSubject: "optional" },
+    'compareSnapshot',
+    { prevSubject: 'optional' },
     compareSnapshot(defaultScreenshotOptions)
   );
 }
