@@ -1,5 +1,5 @@
 import { defineConfig } from "cypress";
-import * as getCompareSnapshotsPlugin from "../dist/plugin";
+import getCompareSnapshotsPlugin from "../dist/plugin";
 
 export default defineConfig({
   e2e: {
