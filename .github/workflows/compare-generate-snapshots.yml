@@ -28,6 +28,6 @@ jobs:
           start: npm start
           command: npm test
       - name: Check diff snapshot only for test-generate.png
-        working-directory: sample-app/snapshots/diff/Regression.spec.ts
+        working-directory: sample-app/cypress/snapshots/diff/Regression.spec.ts
         run: |
           [ -f test-generate-diff.png] && ![ -f test-not-generate-diff.png]
