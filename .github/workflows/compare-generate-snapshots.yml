@@ -30,4 +30,4 @@ jobs:
       - name: Check diff snapshot only for test-generate.png
         working-directory: sample-app/cypress/snapshots/diff/Regression.spec.ts
         run: |
-          [ -f test-generate-diff.png] && ![ -f test-not-generate-diff.png]
+          [ -f test-generate-diff.png ] && [ ! -f test-not-generate-diff.png ]
