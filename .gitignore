@@ -4,6 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
+/sample-app/node_modules
+/sample-app/cypress/snapshots/actual
+/sample-app/cypress/snapshots/diff
 
 # testing
 /coverage

@@ -3,13 +3,13 @@ on:
   pull_request:
     branches: ["main"]
 jobs:
-  cypress-run:
+  cypress-run-base:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: ["ubuntu-latest"]
         node-version: ["16.x"]
-    name: Cypress run
+    name: Cypress run with base snapshot generation
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -27,6 +27,7 @@ jobs:
           working-directory: sample-app
           start: npm start
           command: npm test
-      - name: Pass or fail
+      - name: Check diff snapshot only for test-generate.png
+        working-directory: sample-app/snapshots/diff/Regression.spec.ts
         run: |
-          if [[ ${{ steps.cypress.outcome }} == 0 ]]; then exit 1; else exit 0; fi
+          [ -f test-generate-diff.png] && ![ -f test-not-generate-diff.png]
