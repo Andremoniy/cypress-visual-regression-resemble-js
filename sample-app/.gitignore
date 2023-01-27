@@ -4,6 +4,7 @@
 /node_modules
 /sample_application_cypress/node_modules
 /sample_application_cypress/cypress/snapshots/actual
+/sample_application_cypress/cypress/snapshots/diff
 /.pnp
 .pnp.js
 
