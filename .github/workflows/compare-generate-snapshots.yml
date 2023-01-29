@@ -18,12 +18,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: "Install and build lib"
-        run: npm install && npm run build
+        run: npm install
       - name: Check original and base snapshots are equal
         working-directory: sample-app/cypress/snapshots
         run: |
-          cmp -s original/Regression.spec.ts/test-generate-base.png base/Regression.spec.ts/test-generate-base.png &&
-          cmp -s original/Regression.spec.ts/test-not-generate-base.png base/Regression.spec.ts/test-not-generate-base.png
+          fc .\original\Regression.spec.ts\test-generate-base.png .\base\Regression.spec.ts\test-generate-base.png &
+          fc .\original\Regression.spec.ts\test-not-generate-base.png .\base\Regression.spec.ts\test-not-generate-base.png
       - name: Cypress.io
         uses: cypress-io/github-action@v5.0.5
         id: cypress
@@ -35,5 +35,5 @@ jobs:
       - name: Check base snapshot only generate for test-generate.png
         working-directory: sample-app/cypress/snapshots
         run: |
-          ! cmp -s original/Regression.spec.ts/test-generate-base.png base/Regression.spec.ts/test-generate-base.png &&
-          cmp -s original/Regression.spec.ts/test-not-generate-base.png base/Regression.spec.ts/test-not-generate-base.png
+          ! fc .\original\Regression.spec.ts\test-generate-base.png .\base\Regression.spec.ts\test-generate-base.png &
+          fc .\original\Regression.spec.ts\test-not-generate-base.png .\base\Regression.spec.ts\test-not-generate-base.png
