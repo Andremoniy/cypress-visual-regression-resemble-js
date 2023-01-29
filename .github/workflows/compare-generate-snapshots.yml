@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ["ubuntu-latest"]
+        os: ["windows-latest"]
         node-version: ["16.x"]
     name: Cypress run with base snapshot generation
     steps:
