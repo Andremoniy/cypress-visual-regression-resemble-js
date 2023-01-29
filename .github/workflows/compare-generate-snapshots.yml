@@ -19,6 +19,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: "Install and build lib"
         run: npm install && npm run build
+      - name: Check original and base snapshots are equal
+        working-directory: sample-app/cypress/snapshots/diff/Regression.spec.ts
+        run: |
+          cmp -s original/Regression.spec.ts/test-generate-base.png base/Regression.spec.ts/test-generate-base.png &&
+          cmp -s original/Regression.spec.ts/test-not-generate-base.png base/Regression.spec.ts/test-not-generate-base.png
       - name: Cypress.io
         uses: cypress-io/github-action@v5.0.5
         id: cypress
@@ -27,7 +32,8 @@ jobs:
           working-directory: sample-app
           start: npm start
           command: npm test
-      - name: Check diff snapshot only for test-generate.png
+      - name: Check base snapshot only generate for test-generate.png
         working-directory: sample-app/cypress/snapshots/diff/Regression.spec.ts
         run: |
-          [ -f test-generate-diff.png ] && [ ! -f test-not-generate-diff.png ]
+          ! cmp -s original/Regression.spec.ts/test-generate-base.png base/Regression.spec.ts/test-generate-base.png &&
+          cmp -s original/Regression.spec.ts/test-not-generate-base.png base/Regression.spec.ts/test-not-generate-base.png
