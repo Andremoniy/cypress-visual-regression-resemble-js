@@ -20,7 +20,7 @@ jobs:
       - name: "Install and build lib"
         run: npm install && npm run build
       - name: Check original and base snapshots are equal
-        working-directory: sample-app/cypress/snapshots/diff/Regression.spec.ts
+        working-directory: sample-app/cypress/snapshots
         run: |
           cmp -s original/Regression.spec.ts/test-generate-base.png base/Regression.spec.ts/test-generate-base.png &&
           cmp -s original/Regression.spec.ts/test-not-generate-base.png base/Regression.spec.ts/test-not-generate-base.png
@@ -33,7 +33,7 @@ jobs:
           start: npm start
           command: npm test
       - name: Check base snapshot only generate for test-generate.png
-        working-directory: sample-app/cypress/snapshots/diff/Regression.spec.ts
+        working-directory: sample-app/cypress/snapshots
         run: |
           ! cmp -s original/Regression.spec.ts/test-generate-base.png base/Regression.spec.ts/test-generate-base.png &&
           cmp -s original/Regression.spec.ts/test-not-generate-base.png base/Regression.spec.ts/test-not-generate-base.png
