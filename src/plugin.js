@@ -1,15 +1,15 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
-const sanitize = require("sanitize-filename");
-const compareImages = require("resemblejs/compareImages");
+const sanitize = require('sanitize-filename');
+const compareImages = require('resemblejs/compareImages');
 
 const {
   createFolder,
   errorSerialize,
   getActualSnapshotsDirectory,
   getSubfolderInSnapshots,
-} = require("./utils");
+} = require('./utils');
 
 let SNAPSHOT_BASE_DIRECTORY;
 let SNAPSHOT_DIFF_DIRECTORY;
@@ -17,9 +17,9 @@ let SNAPSHOT_ACTUAL_DIRECTORY;
 let ALWAYS_GENERATE_DIFF;
 
 function setupSnapshotPaths(args) {
-  SNAPSHOT_BASE_DIRECTORY = args.baseDir || getSubfolderInSnapshots("base");
+  SNAPSHOT_BASE_DIRECTORY = args.baseDir || getSubfolderInSnapshots('base');
 
-  SNAPSHOT_DIFF_DIRECTORY = args.diffDir || getSubfolderInSnapshots("diff");
+  SNAPSHOT_DIFF_DIRECTORY = args.diffDir || getSubfolderInSnapshots('diff');
 }
 
 function setupDiffImageGeneration(args) {
@@ -78,14 +78,14 @@ async function compareSnapshotsPlugin(args) {
           green: 0,
           blue: 255,
         },
-        errorType: "movement",
+        errorType: 'movement',
         transparency: 0.3,
         largeImageThreshold: 1200,
         useCrossOrigin: false,
         outputDiff: true,
       },
       scaleToSameSize: true,
-      ignore: "antialiasing",
+      ignore: 'antialiasing',
     };
 
     const actualImageData = fs.readFileSync(options.actualImage);
@@ -119,7 +119,7 @@ async function compareSnapshotsPlugin(args) {
 
 function getCompareSnapshotsPlugin(on, config) {
   SNAPSHOT_ACTUAL_DIRECTORY = getActualSnapshotsDirectory(config);
-  on("task", {
+  on('task', {
     compareSnapshotsPlugin,
     visualRegressionCopy,
   });
