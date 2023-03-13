@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const { PNG } = require('pngjs');
 
@@ -79,10 +80,17 @@ const errorSerialize = (error) =>
     )
   );
 
+const getSubfolderInSnapshots = (subfolder) =>
+  path.join(process.cwd(), 'cypress', 'snapshots', subfolder);
+const getActualSnapshotsDirectory = (config) =>
+  (config || {}).screenshotsFolder || getSubfolderInSnapshots('actual');
+
 module.exports = {
   adjustCanvas,
   createFolder,
   mkdirp,
   parseImage,
   errorSerialize,
+  getActualSnapshotsDirectory,
+  getSubfolderInSnapshots,
 };
