@@ -1,28 +1,25 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const sanitize = require('sanitize-filename');
-const compareImages = require('resemblejs/compareImages');
+const sanitize = require("sanitize-filename");
+const compareImages = require("resemblejs/compareImages");
 
-const { createFolder, errorSerialize } = require('./utils');
+const {
+  createFolder,
+  errorSerialize,
+  getActualSnapshotsDirectory,
+  getSubfolderInSnapshots,
+} = require("./utils");
 
 let SNAPSHOT_BASE_DIRECTORY;
 let SNAPSHOT_DIFF_DIRECTORY;
-let CYPRESS_SCREENSHOT_DIR;
+let SNAPSHOT_ACTUAL_DIRECTORY;
 let ALWAYS_GENERATE_DIFF;
 
-function setupScreenshotPath(config) {
-  // use cypress default path as fallback
-  CYPRESS_SCREENSHOT_DIR =
-    (config || {}).screenshotsFolder || 'cypress/screenshots';
-}
-
 function setupSnapshotPaths(args) {
-  SNAPSHOT_BASE_DIRECTORY =
-    args.baseDir || path.join(process.cwd(), 'cypress', 'snapshots', 'base');
+  SNAPSHOT_BASE_DIRECTORY = args.baseDir || getSubfolderInSnapshots("base");
 
-  SNAPSHOT_DIFF_DIRECTORY =
-    args.diffDir || path.join(process.cwd(), 'cypress', 'snapshots', 'diff');
+  SNAPSHOT_DIFF_DIRECTORY = args.diffDir || getSubfolderInSnapshots("diff");
 }
 
 function setupDiffImageGeneration(args) {
@@ -34,7 +31,7 @@ function visualRegressionCopy(args) {
   setupSnapshotPaths(args);
   const baseDir = path.join(SNAPSHOT_BASE_DIRECTORY, args.specName);
   const from = path.join(
-    CYPRESS_SCREENSHOT_DIR,
+    SNAPSHOT_ACTUAL_DIRECTORY,
     args.specName,
     `${args.from}.png`
   );
@@ -54,7 +51,7 @@ async function compareSnapshotsPlugin(args) {
 
   const options = {
     actualImage: path.join(
-      CYPRESS_SCREENSHOT_DIR,
+      SNAPSHOT_ACTUAL_DIRECTORY,
       args.specDirectory,
       `${fileName}-actual.png`
     ),
@@ -81,14 +78,14 @@ async function compareSnapshotsPlugin(args) {
           green: 0,
           blue: 255,
         },
-        errorType: 'movement',
+        errorType: "movement",
         transparency: 0.3,
         largeImageThreshold: 1200,
         useCrossOrigin: false,
         outputDiff: true,
       },
       scaleToSameSize: true,
-      ignore: 'antialiasing',
+      ignore: "antialiasing",
     };
 
     const actualImageData = fs.readFileSync(options.actualImage);
@@ -121,8 +118,8 @@ async function compareSnapshotsPlugin(args) {
 }
 
 function getCompareSnapshotsPlugin(on, config) {
-  setupScreenshotPath(config);
-  on('task', {
+  SNAPSHOT_ACTUAL_DIRECTORY = getActualSnapshotsDirectory(config);
+  on("task", {
     compareSnapshotsPlugin,
     visualRegressionCopy,
   });
