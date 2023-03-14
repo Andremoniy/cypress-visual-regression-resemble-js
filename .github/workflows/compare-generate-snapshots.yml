@@ -1,0 +1,39 @@
+name: Compare and generate snapshots in Cypress tests
+on:
+  pull_request:
+    branches: ["main"]
+jobs:
+  cypress-run-base:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ["windows-latest"]
+        node-version: ["16.x"]
+    name: Cypress run with base snapshot generation
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: "Use Node.js v${{ matrix.node-version }}"
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: "Install and build lib"
+        run: npm install
+      - name: Check original and base snapshots are equal
+        working-directory: sample-app/cypress/snapshots
+        run: |
+          fc .\original\Regression.spec.ts\test-generate-base.png .\base\Regression.spec.ts\test-generate-base.png &
+          fc .\original\Regression.spec.ts\test-not-generate-base.png .\base\Regression.spec.ts\test-not-generate-base.png
+      - name: Cypress.io
+        uses: cypress-io/github-action@v5.0.5
+        id: cypress
+        continue-on-error: true
+        with:
+          working-directory: sample-app
+          start: npm start
+          command: npm test
+      - name: Check base snapshot only generate for test-generate.png
+        working-directory: sample-app/cypress/snapshots
+        run: |
+          ! fc .\original\Regression.spec.ts\test-generate-base.png .\base\Regression.spec.ts\test-generate-base.png &
+          fc .\original\Regression.spec.ts\test-not-generate-base.png .\base\Regression.spec.ts\test-not-generate-base.png
