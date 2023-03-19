@@ -4,22 +4,25 @@ const path = require('path');
 const sanitize = require('sanitize-filename');
 const compareImages = require('resemblejs/compareImages');
 
-const {
-  createFolder,
-  errorSerialize,
-  getActualSnapshotsDirectory,
-  getSubfolderInSnapshots,
-} = require('./utils');
+const { createFolder, errorSerialize } = require('./utils');
 
 let SNAPSHOT_BASE_DIRECTORY;
 let SNAPSHOT_DIFF_DIRECTORY;
-let SNAPSHOT_ACTUAL_DIRECTORY;
+let CYPRESS_SCREENSHOT_DIR;
 let ALWAYS_GENERATE_DIFF;
 
-function setupSnapshotPaths(args) {
-  SNAPSHOT_BASE_DIRECTORY = args.baseDir || getSubfolderInSnapshots('base');
+function setupScreenshotPath(config) {
+  // use cypress default path as fallback
+  CYPRESS_SCREENSHOT_DIR =
+    (config || {}).screenshotsFolder || 'cypress/screenshots';
+}
 
-  SNAPSHOT_DIFF_DIRECTORY = args.diffDir || getSubfolderInSnapshots('diff');
+function setupSnapshotPaths(args) {
+  SNAPSHOT_BASE_DIRECTORY =
+    args.baseDir || path.join(process.cwd(), 'cypress', 'snapshots', 'base');
+
+  SNAPSHOT_DIFF_DIRECTORY =
+    args.diffDir || path.join(process.cwd(), 'cypress', 'snapshots', 'diff');
 }
 
 function setupDiffImageGeneration(args) {
@@ -31,7 +34,7 @@ function visualRegressionCopy(args) {
   setupSnapshotPaths(args);
   const baseDir = path.join(SNAPSHOT_BASE_DIRECTORY, args.specName);
   const from = path.join(
-    SNAPSHOT_ACTUAL_DIRECTORY,
+    CYPRESS_SCREENSHOT_DIR,
     args.specName,
     `${args.from}.png`
   );
@@ -51,7 +54,7 @@ async function compareSnapshotsPlugin(args) {
 
   const options = {
     actualImage: path.join(
-      SNAPSHOT_ACTUAL_DIRECTORY,
+      CYPRESS_SCREENSHOT_DIR,
       args.specDirectory,
       `${fileName}-actual.png`
     ),
@@ -118,7 +121,7 @@ async function compareSnapshotsPlugin(args) {
 }
 
 function getCompareSnapshotsPlugin(on, config) {
-  SNAPSHOT_ACTUAL_DIRECTORY = getActualSnapshotsDirectory(config);
+  setupScreenshotPath(config);
   on('task', {
     compareSnapshotsPlugin,
     visualRegressionCopy,
