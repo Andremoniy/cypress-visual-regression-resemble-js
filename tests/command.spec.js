@@ -7,18 +7,17 @@ global.Cypress = {
   },
 };
 
-
 global.cy = {
   get: jest.fn(),
-  screenshot: jest.fn()
-}
-const command = require("../src/command");
+  screenshot: jest.fn(),
+};
+const compareSnapshotCommand = require("../src/command");
 
 describe("compareSnapshot command", () => {
   it("should be added", () => {
     Cypress.Commands.add.mockReset();
 
-    command.compareSnapshotCommand();
+    compareSnapshotCommand();
 
     expect(Cypress.Commands.add).toHaveBeenCalledWith(
       "compareSnapshot",
@@ -26,12 +25,4 @@ describe("compareSnapshot command", () => {
       expect.any(Function)
     );
   });
-
-  it("should get cypress env variables", () => {
-    command.compareSnapshot()(undefined, "test-name")
-
-    expect(Cypress.env).toHaveBeenCalledWith('SNAPSHOT_BASE_DIRECTORY')
-    expect(Cypress.env).toHaveBeenCalledWith('SNAPSHOT_DIFF_DIRECTORY')
-    expect(Cypress.env).toHaveBeenCalledWith('ALWAYS_GENERATE_DIFF')
-  })
 });
