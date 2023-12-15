@@ -258,6 +258,20 @@ The result of this work is the present plugin called **cypress-visual-regression
 1. Error when installing the plugin: `ERR! install response status 404 Not Found on https://github.com/Automattic/node-canvas/releases/download/v2.9.0/canvas-v2.9.0-node-v108-darwin-unknown-arm64.tar.gz `
 
 This is a [known issue](https://github.com/Automattic/node-canvas/issues/2306) on the Canvas dependency. In this case you need to install and update some subdependencies from Canvas with:
+
+Mac Os
 ```
 brew install pkg-config cairo pango libpng jpeg giflib librsvg pixman
+```
+
+Windows using MSYS2
+```
+pacman -S pkg-config
+pacman -S mingw-w64-x86_64-cairo
+pacman -S mingw-w64-x86_64-pango
+pacman -S mingw-w64-x86_64-libpng
+pacman -S mingw-w64-x86_64-libjpeg-turbo
+pacman -S mingw-w64-x86_64-giflib
+pacman -S mingw-w64-x86_64-librsvg
+pacman -S mingw-w64-x86_64-pixman
 ```
